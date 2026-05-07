@@ -1,0 +1,72 @@
+---
+const faqItems = [
+  {
+    q: 'Is Hiroku Launcher free?',
+    a: 'Yes, completely free and open source under GPL-3.0. No ads, no premium tiers, no tracking.',
+  },
+  {
+    q: 'Which mod loaders are supported?',
+    a: 'Forge, Fabric, NeoForge, Quilt, OptiFine, Legacy Fabric, and Cleanroom. OptiFine + Forge combo is also supported.',
+  },
+  {
+    q: 'Can I use my Microsoft account?',
+    a: 'Yes! Full Microsoft OAuth support for online play. Offline accounts and custom Yggdrasil servers are also supported.',
+  },
+  {
+    q: 'What renderers are available?',
+    a: 'GL4ES, VirGL, Vulkan Zink, and Freedreno. You can also install custom Vulkan drivers and turnip drivers for better performance on specific GPUs.',
+  },
+  {
+    q: 'Does it support game controllers?',
+    a: 'Yes — gamepad, keyboard, and mouse input are all supported. Custom touch control layouts with a layer editor let you build the perfect control scheme.',
+  },
+];
+---
+
+<section id="faq" class="py-24">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <span class="text-hiroku-primary text-sm font-semibold tracking-widest uppercase">FAQ</span>
+      <h2 class="text-4xl md:text-5xl font-bold mt-3 mb-4">Questions?</h2>
+    </div>
+
+    <div class="space-y-4">
+      {faqItems.map((item, i) => (
+        <div class="scroll-reveal faq-item glass rounded-2xl" style={`transition-delay:${i * 0.06}s`}>
+          <button class="faq-toggle w-full p-6 flex items-center justify-between text-left" aria-expanded="false">
+            <span class="font-semibold pr-4">{item.q}</span>
+            <svg class="faq-arrow w-5 h-5 text-hiroku-accent/50 shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <div class="px-6 pb-6 text-hiroku-accent/50 text-sm leading-relaxed">
+              {item.a}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const content = item?.querySelector('.faq-content');
+      const arrow = item?.querySelector('.faq-arrow');
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      if (isOpen) {
+        btn.setAttribute('aria-expanded', 'false');
+        content?.style.setProperty('max-height', '0px');
+        arrow?.classList.remove('rotate-180');
+      } else {
+        btn.setAttribute('aria-expanded', 'true');
+        content?.style.setProperty('max-height', content.scrollHeight + 'px');
+        arrow?.classList.add('rotate-180');
+      }
+    });
+  });
+</script>

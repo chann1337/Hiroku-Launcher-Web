@@ -1,0 +1,52 @@
+---
+const screenshots = [
+  {
+    src: '/splashscreen.jpg',
+    alt: 'Splash Screen',
+    label: 'Splash Screen',
+    desc: 'Cinematic intro with particles & progress',
+  },
+  {
+    src: '/accountsscreen.jpg',
+    alt: 'Accounts Screen',
+    label: 'Account Manager',
+    desc: 'Microsoft, offline & server accounts',
+  },
+  {
+    src: '/launcherscreen.jpg',
+    alt: 'Launcher Screen',
+    label: 'Home Screen',
+    desc: 'Glass UI with video background',
+  },
+];
+---
+
+<section id="gallery" class="py-24 relative">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <span class="text-hiroku-primary text-sm font-semibold tracking-widest uppercase">Gallery</span>
+      <h2 class="text-4xl md:text-5xl font-bold mt-3 mb-4">See It In Action</h2>
+      <p class="text-hiroku-accent/60 text-lg">Every screen is a statement.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {screenshots.map((s, i) => (
+        <div class="scroll-reveal glass rounded-2xl overflow-hidden relative group" style={`transition-delay:${i * 0.1}s`}>
+          <div class="aspect-[9/16] overflow-hidden bg-hiroku-dark flex items-center justify-center">
+            <img
+              src={s.src}
+              alt={s.alt}
+              class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-hiroku-dark/80 via-transparent to-transparent pointer-events-none"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-4">
+            <span class="glass-light text-xs px-3 py-1.5 rounded-full text-white font-medium">{s.label}</span>
+            <p class="text-white/40 text-xs mt-1">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
